@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.graphics.Screen;
+import com.example.input.InputHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class Display extends Canvas implements Runnable {
     private Screen screen;
     private int[] pixels;
     private Game game;
+    private InputHandler input;
 
 
     public Display() {
@@ -32,6 +34,12 @@ public class Display extends Canvas implements Runnable {
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
         game = new Game();
+        input = new InputHandler();
+        addKeyListener(input);
+        addMouseListener(input);
+        addFocusListener(input);
+        addMouseListener(input);
+        addMouseMotionListener(input);
     }
 
     private void start() {
@@ -94,7 +102,7 @@ public class Display extends Canvas implements Runnable {
     }
 
     private void tick(){
-        game.tick();
+        game.tick(input.key);
     }
 
     private void render(){
