@@ -1,12 +1,16 @@
 package com.example;
 
+import com.example.input.Controller;
+
 import java.awt.event.KeyEvent;
 
 public class Game {
 
     public int time;
+    public Controller controls;
 
     public Game() {
+        controls = new Controller();
     }
 
     public void tick(boolean[] key) {
@@ -15,5 +19,9 @@ public class Game {
         boolean back = key[KeyEvent.VK_S];
         boolean left = key[KeyEvent.VK_A];
         boolean right = key[KeyEvent.VK_D];
+        boolean turnLeft = key[KeyEvent.VK_LEFT];
+        boolean turnRight = key[KeyEvent.VK_RIGHT];
+
+        controls.tick(forward, back, left, right, turnLeft, turnRight);
     }
 }

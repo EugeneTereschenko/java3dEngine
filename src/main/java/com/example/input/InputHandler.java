@@ -13,6 +13,7 @@ public class InputHandler implements KeyListener, FocusListener, MouseListener, 
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //System.out.println(e.getKeyCode());
         int keyCode = e.getKeyCode();
         if (keyCode > 0 && keyCode < key.length){
             key[keyCode] = true;
@@ -22,8 +23,9 @@ public class InputHandler implements KeyListener, FocusListener, MouseListener, 
 
     @Override
     public void keyReleased(KeyEvent e) {
-        for (int i = 0; i <  key.length; i++) {
-            key[i] = false;
+        int keyCode = e.getKeyCode();
+        if (keyCode > 0 && keyCode < key.length) {
+            key[keyCode] = false;
         }
     }
 
@@ -34,6 +36,9 @@ public class InputHandler implements KeyListener, FocusListener, MouseListener, 
 
     @Override
     public void focusLost(FocusEvent e) {
+        for (int i = 0; i < key.length; i++){
+            key[i] = false;
+        }
 
     }
 
